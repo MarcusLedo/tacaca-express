@@ -4,8 +4,8 @@ public class BackOffice extends Unity{
 
 	private String nature;
 	
-	public BackOffice(Integer branch, String name, Integer taxPayerIdNumber, String nature) {
-		super(branch, name, taxPayerIdNumber);
+	public BackOffice(Integer branch, String name, Integer taxPayerIdNumber, String nature, Email email) {
+		super(branch, name, taxPayerIdNumber, email);
 		this.nature = nature;
 	}
 

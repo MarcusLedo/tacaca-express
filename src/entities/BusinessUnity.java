@@ -5,8 +5,8 @@ public class BusinessUnity extends Unity{
 	private Integer size;
 	
 	
-	public BusinessUnity(Integer branch, String name, Integer taxPayerIdNumber, Integer size) {
-		super(branch, name, taxPayerIdNumber);
+	public BusinessUnity(Integer branch, String name, Integer taxPayerIdNumber, Integer size, Email email) {
+		super(branch, name, taxPayerIdNumber, email);
 		this.size = size;
 	}
 	
