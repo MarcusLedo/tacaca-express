@@ -60,12 +60,12 @@ public class Menu {
 		System.out.println(">>> TCIMS - LOGISTICS <<<");
 		System.out.println("");
 		System.out.println("31) ANNUAL WATER BILLS");
-		System.out.println("33) ANNUAL ENERGY BILLS");
-		System.out.println("34 ) ANNUAL GAS BILLS");
-		System.out.println("35) MONTHLY EXPENDITURES OF AN UNITY");
-		System.out.println("36) LIST PROVIDERS OF AN UNITY");
-		System.out.println("37) MONTHLY TOTAL EXPENDITURES");
-		System.out.println("38) ANNUAL TOTAL EXPENDITURES");
+		System.out.println("32) ANNUAL ENERGY BILLS");
+		System.out.println("33 ) ANNUAL GAS BILLS");
+		System.out.println("34) MONTHLY EXPENDITURES OF AN UNITY");
+		System.out.println("35) LIST PROVIDERS OF AN UNITY");
+		System.out.println("36) MONTHLY TOTAL EXPENDITURES");
+		System.out.println("37) ANNUAL TOTAL EXPENDITURES");
 		System.out.println("");
 		System.out.println("9) BACK TO THE PREVIOUS MENU");
 		System.out.println("0) EXIT");

@@ -14,7 +14,7 @@ public class Employee {
 	private String areaCode;
 	private String mobile;
 	private String insuranceNumber;
-	private String placeBirth;
+	private String birthPlace;
 	private String fatherName;
 	private String motherName;
 	private Date hiringDate;
@@ -44,7 +44,7 @@ public class Employee {
 		this.areaCode = areaCode;
 		this.mobile = mobile;
 		this.insuranceNumber = insuranceNumber;
-		this.placeBirth = placeBirth;
+		this.birthPlace = placeBirth;
 		this.fatherName = fatherName;
 		this.motherName = motherName;
 		this.hiringDate = hiringDate;
@@ -71,6 +71,32 @@ public class Employee {
 		this.gender = gender;
 	}
 	
+
+	public Employee(Integer idEmployee, String name, String gender, Address address, String familyName, String email,
+			String areaCode, String mobile, String insuranceNumber, String birthPlace, String fatherName,
+			String motherName, Date hiringDate, Date dismissalDate, Date birthDate, String maritalStatus,
+			Integer children, boolean disabledPerson, boolean healthPlan, String typeDriverLicense) {
+		this.idEmployee = idEmployee;
+		this.name = name;
+		this.gender = gender;
+		this.address = address;
+		this.familyName = familyName;
+		this.email = email;
+		this.areaCode = areaCode;
+		this.mobile = mobile;
+		this.insuranceNumber = insuranceNumber;
+		this.birthPlace = birthPlace;
+		this.fatherName = fatherName;
+		this.motherName = motherName;
+		this.hiringDate = hiringDate;
+		this.dismissalDate = dismissalDate;
+		this.birthDate = birthDate;
+		this.maritalStatus = maritalStatus;
+		this.children = children;
+		this.disabledPerson = disabledPerson;
+		this.healthPlan = healthPlan;
+		this.typeDriverLicense = typeDriverLicense;
+	}
 
 	public List<Career> getCareer() {
 		return career;
@@ -121,11 +147,11 @@ public class Employee {
 	}
 
 	public String getPlaceBirth() {
-		return placeBirth;
+		return birthPlace;
 	}
 
 	public void setPlaceBirth(String placeBirth) {
-		this.placeBirth = placeBirth;
+		this.birthPlace = placeBirth;
 	}
 
 	public String getFatherName() {

@@ -30,6 +30,18 @@ public abstract class Unity {
 	}
 
 
+	
+	public Unity(Integer branch, String name, Integer companiesHouseId, Email email, PhoneNumber phone) {
+		this.branch = branch;
+		this.name = name;
+		this.companiesHouseId = companiesHouseId;
+		this.email = email;
+		this.phone = phone;
+	}
+
+
+
+
 
 	public Unity(Integer branch, String name, Integer taxPayerIdNumber, Email email) {
 		this.branch = branch;
@@ -133,5 +145,16 @@ public abstract class Unity {
 
 	public void addMonthlyUnityExpenditure(MonthlyUnityExpenditure expenditure) {
 		monthlyExpenditure.add(expenditure);
+	}
+	
+	public Integer employeeAmount() {
+		return this.getEmployees().size();
+	}
+	
+	@Override
+	public String toString() {
+		return "Branch: " + branch + "\n"
+				+ "Name: " + name + "\n"
+				+ "Employee amount: " + this.employeeAmount();
 	}
 }
