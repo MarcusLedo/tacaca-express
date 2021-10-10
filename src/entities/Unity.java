@@ -1,11 +1,13 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Unity {
 	private Integer branch;
 	private String name;
 	private Integer taxPayerIdNumber;
+	private List<Employee> employees = new ArrayList<>(); 
 	
 	
 	
@@ -41,11 +43,23 @@ public abstract class Unity {
 	
 	
 
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
 	public void printUnits(ArrayList<Unity> unity) {
 		
 	}
 	
 	public void addUnity(Unity unity) {
 		
+	}
+	
+	public void addEmployee(Employee employee) {
+		employees.add(employee);
 	}
 }
