@@ -10,7 +10,7 @@ public class Main {
 		
 		
 		do {
-			Menu.printMenu();
+			Menu.printMainMenu();
 			System.out.printf("\n-> Enter an option: ");
 			Menu.setOption(sc.nextInt());
 			switch (Menu.getOption()) {
