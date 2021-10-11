@@ -53,6 +53,16 @@ public class BackOffice extends Unity{
 		this.nature = nature;
 	}
 	
-	
+	@Override
+	public Double calaculateSalaryCost() {
+		double total = 0.0;
+		for(Employee y : this.getEmployees()) {
+			if(y.getCurrentSalary() != null)
+				total += y.getCurrentSalary();
+		}
+			
+		
+		return total;
+	}
 	
 }

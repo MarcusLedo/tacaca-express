@@ -4,20 +4,21 @@ public class PositionTitle {
 	private Integer id;
 	private String positionTitle;
 	private Double salary;
-	
-	
-	
+
 	public PositionTitle(Integer id, String positionTitle) {
 		this.id = id;
 		this.positionTitle = positionTitle;
 	}
 	
-	
-	
-	
+
 	public PositionTitle(Integer id) {
 		this.id = id;
-		switch(id) {
+		changePosition(id);
+	}
+	
+
+	public void changePosition(Integer id) {
+		switch (id) {
 		case 1:
 			this.positionTitle = "MANAGER";
 			this.salary = 10000.0;
@@ -70,35 +71,34 @@ public class PositionTitle {
 			this.positionTitle = "DIRECTOR";
 			this.salary = 20000.0;
 			break;
-			default:
-				this.positionTitle = "NOT REGISTERED";
-				this.salary = 0.0;
+		default:
+			this.positionTitle = "NOT REGISTERED";
+			this.salary = 0.0;
 		}
 	}
-
-
 
 	public Double getSalary() {
 		return salary;
 	}
 
-
 	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getPositionTitle() {
 		return positionTitle;
 	}
+
 	public void setPositionTitle(String positionTitle) {
 		this.positionTitle = positionTitle;
 	}
-	
+
 }

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Address;
@@ -17,6 +18,7 @@ import utilities.AutoInput;
 
 public class Main {
 	public static void main(String[] args) throws ParseException {
+		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		AutoInput.loadUnityInput();
@@ -222,7 +224,6 @@ public class Main {
 								for (Employee y : x.getEmployees()) {
 									if (y.getEmployeeId() == id) {
 										flag = 1;
-										System.out.println("FOUND IT");
 										for (Career c : y.getCareer())
 											System.out.println(c + "\n\n");
 									}
@@ -234,6 +235,17 @@ public class Main {
 						break;
 					case 28:
 						System.out.println("\n--- CHECK SALARY COST OF AN UNITY ---\n");
+						flag = 0;
+						System.out.print("\n-> Enter the unity branch that you desire to check: ");
+						branch = sc.nextInt();
+						for (Unity x : unity) {
+							if (x.getBranch() == branch) {
+								flag = 1;
+								System.out.printf("\nSalary Cost = $%.2f\n\n", x.calaculateSalaryCost());
+							}
+						}
+						if (flag == 0)
+							System.out.println("Unity not found!");
 					}
 				} while (Menu.getOption() != 9);
 				break;

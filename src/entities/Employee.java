@@ -8,6 +8,7 @@ import java.util.List;
 public class Employee {
 	private Integer employeeId;
 	private Integer branchId; 
+	private Double currentSalary;
 	private String name;
 	private String gender;
 	private Address address;
@@ -314,8 +315,15 @@ public class Employee {
 	}
 	
 	public void addCareer(Career career) {
+		currentSalary = career.getPosition().getSalary();
 		this.career.add(career);
 	}
+	
+
+	public Double getCurrentSalary() {
+		return currentSalary;
+	}
+
 
 	@Override
 	public String toString() {

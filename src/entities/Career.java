@@ -62,8 +62,8 @@ public class Career {
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		return "Position: " + this.position.getPositionTitle() + "\n" + "Start date: " + sdf.format(this.getStartDate()) + "\n"
-				+ "End date: " + sdf.format(this.getEndDate()) + "\n";
+		return "ID: " + id + "\n" + "Position: " + this.position.getPositionTitle() + "\n" + "Start date: " + sdf.format(this.getStartDate()) + "\n"
+				+ "End date: " + sdf.format(this.getEndDate()) + "\n" + String.format("Salary: $%.2f", this.getPosition().getSalary()) + "\n";
 	}
 
 }

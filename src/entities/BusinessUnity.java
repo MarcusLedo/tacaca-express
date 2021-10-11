@@ -50,5 +50,19 @@ public class BusinessUnity extends Unity{
 	public void setSize(Integer size) {
 		this.size = size;
 	}
+
+
+
+
+	@Override
+	public Double calaculateSalaryCost() {
+		double total = 0.0;
+		for(Employee y : this.getEmployees())
+			if(y.getCurrentSalary() != null)
+				total += y.getCurrentSalary();
+		
+		return total;
+	}
+
 		
 }

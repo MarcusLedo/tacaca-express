@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Unity {
+import utilities.SalaryCost;
+
+public abstract class Unity implements SalaryCost{
 	private Integer branch;
 	private String name;
 	private String companiesHouseId;
