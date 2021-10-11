@@ -12,6 +12,15 @@ public class PositionTitle {
 	}
 	
 	
+	
+	
+	public PositionTitle(Integer id) {
+		this.id = id;
+	}
+
+
+
+
 	public Integer getId() {
 		return id;
 	}
