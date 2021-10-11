@@ -8,17 +8,17 @@ public class UnityPremises {
 	private Integer branchId;
 	private Date openingDate;
 	private Date closingDate;
-	private String ocupacao;
+	private String premiseType;
 	private Address address;
 	
 	
 	
-	public UnityPremises(Integer id, Integer branchId, Date openingDate, Date closingDate, String ocupacao, Address address) {
+	public UnityPremises(Integer id, Integer branchId, Date openingDate, Date closingDate, String premiseType, Address address) {
 		this.id = id;
 		this.branchId = branchId;
 		this.openingDate = openingDate;
 		this.closingDate = closingDate;
-		this.ocupacao = ocupacao;
+		this.premiseType = premiseType;
 		this.address = address;
 	}
 	
@@ -49,10 +49,10 @@ public class UnityPremises {
 		this.closingDate = closingDate;
 	}
 	public String getOcupacao() {
-		return ocupacao;
+		return premiseType;
 	}
 	public void setOcupacao(String ocupacao) {
-		this.ocupacao = ocupacao;
+		this.premiseType = ocupacao;
 	}
 	public Address getAddress() {
 		return address;

@@ -1,17 +1,18 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Employee {
 	private Integer idEmployee;
+	private Integer branchId; 
 	private String name;
 	private String gender;
 	private Address address;
 	private String familyName;
 	private String email;
-	private String areaCode;
 	private String mobile;
 	private String insuranceNumber;
 	private String birthPlace;
@@ -30,8 +31,8 @@ public class Employee {
 	
 	
 
-	public Employee(Integer idEmployee, String name, String gender, Address address, String familyName, String email,
-			String areaCode, String mobile, String insuranceNumber, String placeBirth, String fatherName,
+	public Employee(Integer idEmployee, String name, String gender, Address address, String familyName, String email
+			, String mobile, String insuranceNumber, String placeBirth, String fatherName,
 			String motherName, Date hiringDate, Date dismissalDate, Date birthDate, String maritalStatus,
 			Integer children, boolean disabledPerson, boolean healthPlan, String typeDriverLicense,
 			List<Career> career) {
@@ -41,7 +42,6 @@ public class Employee {
 		this.address = address;
 		this.familyName = familyName;
 		this.email = email;
-		this.areaCode = areaCode;
 		this.mobile = mobile;
 		this.insuranceNumber = insuranceNumber;
 		this.birthPlace = placeBirth;
@@ -57,6 +57,41 @@ public class Employee {
 		this.typeDriverLicense = typeDriverLicense;
 		this.career = career;
 	}
+	
+	
+	
+	
+
+	public Employee(Integer idEmployee, String name, String gender, Address address,
+			String familyName, String email, String mobile, String insuranceNumber, String birthPlace,
+			String fatherName, String motherName, Date hiringDate, Date dismissalDate, Date birthDate,
+			String maritalStatus, Integer children, boolean disabledPerson, boolean healthPlan,
+			String typeDriverLicense) {
+		super();
+		this.idEmployee = idEmployee;
+		this.name = name;
+		this.gender = gender;
+		this.address = address;
+		this.familyName = familyName;
+		this.email = email;
+		this.mobile = mobile;
+		this.insuranceNumber = insuranceNumber;
+		this.birthPlace = birthPlace;
+		this.fatherName = fatherName;
+		this.motherName = motherName;
+		this.hiringDate = hiringDate;
+		this.dismissalDate = dismissalDate;
+		this.birthDate = birthDate;
+		this.maritalStatus = maritalStatus;
+		this.children = children;
+		this.disabledPerson = disabledPerson;
+		this.healthPlan = healthPlan;
+		this.typeDriverLicense = typeDriverLicense;
+	}
+
+
+
+
 
 	public Employee(Integer idEmployee, String name, String gender, Address address) {
 		this.idEmployee = idEmployee;
@@ -75,14 +110,14 @@ public class Employee {
 	public Employee(Integer idEmployee, String name, String gender, Address address, String familyName, String email,
 			String areaCode, String mobile, String insuranceNumber, String birthPlace, String fatherName,
 			String motherName, Date hiringDate, Date dismissalDate, Date birthDate, String maritalStatus,
-			Integer children, boolean disabledPerson, boolean healthPlan, String typeDriverLicense) {
+			Integer children, boolean disabledPerson, boolean healthPlan, String typeDriverLicense, Integer branchId) {
 		this.idEmployee = idEmployee;
+		this.branchId = branchId;
 		this.name = name;
 		this.gender = gender;
 		this.address = address;
 		this.familyName = familyName;
 		this.email = email;
-		this.areaCode = areaCode;
 		this.mobile = mobile;
 		this.insuranceNumber = insuranceNumber;
 		this.birthPlace = birthPlace;
@@ -100,6 +135,25 @@ public class Employee {
 
 	public List<Career> getCareer() {
 		return career;
+	}
+
+	
+	
+	
+	public Integer getBranchId() {
+		return branchId;
+	}
+
+	public void setBranchId(Integer branchId) {
+		this.branchId = branchId;
+	}
+
+	public String getBirthPlace() {
+		return birthPlace;
+	}
+
+	public void setBirthPlace(String birthPlace) {
+		this.birthPlace = birthPlace;
 	}
 
 	public void setCareer(List<Career> career) {
@@ -122,13 +176,6 @@ public class Employee {
 		this.email = email;
 	}
 
-	public String getAreaCode() {
-		return areaCode;
-	}
-
-	public void setAreaCode(String areaCode) {
-		this.areaCode = areaCode;
-	}
 
 	public String getMobile() {
 		return mobile;
@@ -272,6 +319,10 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return idEmployee + " // " + name + " // " + gender;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return "Id: " + idEmployee + "\n"
+				+ "Name: " + name + "\n"
+				+ "Health Plan: " + healthPlan + "\n"
+				+ "Birth date: " + sdf.format(this.getBirthDate());
 	}
 }

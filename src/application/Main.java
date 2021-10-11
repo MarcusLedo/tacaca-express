@@ -2,7 +2,6 @@ package application;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -10,17 +9,18 @@ import java.util.Scanner;
 import entities.Address;
 import entities.BackOffice;
 import entities.BusinessUnity;
-import entities.Email;
 import entities.Employee;
-import entities.PhoneNumber;
 import entities.Unity;
 import ui.Menu;
+import utilities.AutoInput;
 
 public class Main {
 	public static void main(String[] args) throws ParseException {
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		List<Unity> unity = new ArrayList<>();
+		AutoInput.loadUnityInput();
+		AutoInput.loadEmployeeInput();
+		List<Unity> unity = AutoInput.getUnity();
 
 		do {
 			Menu.printMainMenu();
@@ -44,29 +44,16 @@ public class Main {
 						System.out.print("\n-> Name: ");
 						String name = sc.nextLine();
 						System.out.print("\n-> Companies house Id: ");
-						Integer companiesHouseId = sc.nextInt();
+						String companiesHouseId = sc.nextLine();
 
 						// ************************ EMAIL DATA ************************
-						System.out.print("\n-> Email ID: ");
-						Integer eId = sc.nextInt();
 						sc.nextLine();
 						System.out.print("\n-> Email name: ");
 						String eName = sc.nextLine();
-						System.out.print("\n-> Email label: ");
-						String eLabel = sc.nextLine();
-						System.out.println("\n-> Email owner (ID): ");
-						Integer eResponsible = sc.nextInt();
-						Email email = new Email(eId, eName, eLabel, eResponsible);
 
 						// ************************ PHONE NUMBER DATA ************************
-						System.out.print("\n-> Phone ID: ");
-						Integer pId = sc.nextInt();
-						sc.nextLine();
-						System.out.print("\n-> Phone Number area code: ");
-						String pAreaCode = sc.nextLine();
 						System.out.print("\n-> Phone number: ");
 						String phoneNumber = sc.nextLine();
-						PhoneNumber phone = new PhoneNumber(pId, pAreaCode, phoneNumber);
 
 						// ************************ UNITY TYPE ************************
 						System.out.println("");
@@ -79,11 +66,11 @@ public class Main {
 						if (uType == 0) {
 							System.out.print("\n-> Unity size: ");
 							Integer size = sc.nextInt();
-							unity.add(new BusinessUnity(branch, name, companiesHouseId, email, phone, size));
+							unity.add(new BusinessUnity(branch, name, companiesHouseId, eName, phoneNumber, size));
 						} else {
 							System.out.print("\n-> Unity nature: ");
 							String nature = sc.nextLine();
-							unity.add(new BackOffice(branch, name, companiesHouseId, email, phone, nature));
+							unity.add(new BackOffice(branch, name, companiesHouseId, eName, phoneNumber, nature));
 						}
 						System.out.println("\nUnity Created.\n");
 						break;
@@ -96,7 +83,7 @@ public class Main {
 						break;
 					case 14:
 						System.out.println("\n--- LIST UNITIES ---\n");
-						for(Unity x : unity) {
+						for (Unity x : unity) {
 							System.out.println(x);
 							System.out.println("____________________________________________________\n");
 						}
@@ -116,9 +103,9 @@ public class Main {
 						int flag = 0;
 						System.out.print("\n-> Enter the unity branch that you desire to hire this employee: ");
 						int branch = sc.nextInt();
-						
+
 						for (Unity x : unity) {
-							if(x.getBranch() == branch) {
+							if (x.getBranch() == branch) {
 								flag = 1;
 								System.out.print("\n-> Employee ID: ");
 								Integer empId = sc.nextInt();
@@ -141,7 +128,7 @@ public class Main {
 								String state = sc.nextLine();
 								System.out.print("\n-> Zip code: ");
 								String zipCode = sc.nextLine();
-								Address address = new Address(streetA1, streetA2, borough, city, state, zipCode);	
+								Address address = new Address(streetA1, streetA2, borough, city, state, zipCode);
 								// ***************************************************************
 
 								System.out.print("\n-> Family Name: ");
@@ -182,14 +169,15 @@ public class Main {
 								boolean healthPlan = sc.nextBoolean();
 								System.out.print("\n-> License type: ");
 								String dLicenseType = sc.nextLine();
-								
-								Employee employee = new Employee(empId, name, gender, address, familyName, empEmail, areaCode, mobile,
-										insuranceNumber, birthPlace, fatherName, motherName, hiringDate, dimissalDate, birthDate, 
-										martialStatus, children, disPerson, healthPlan, dLicenseType);
-								
+
+								Employee employee = new Employee(empId, name, gender, address, familyName, empEmail,
+										areaCode, mobile, insuranceNumber, birthPlace, fatherName, motherName,
+										hiringDate, dimissalDate, birthDate, martialStatus, children, disPerson,
+										healthPlan, dLicenseType, x.getBranch());
+
 								x.addEmployee(employee);
 							}
-							if(flag == 0)
+							if (flag == 0)
 								System.out.println("Unity not found!");
 							else
 								System.out.println("Employee Hired!");
@@ -207,6 +195,18 @@ public class Main {
 						break;
 					case 26:
 						System.out.println("\n--- LIST EMPLOYEES ---\n");
+						flag = 0;
+						System.out.print("\n-> Enter the unity branch that you desire to check: ");
+						branch = sc.nextInt();
+						for(Unity x : unity) {
+							if (x.getBranch() == branch) {
+								flag = 1;
+								for(Employee y : x.getEmployees())
+									System.out.println(y + "\n\n");
+							}
+						}
+						if (flag == 0)
+							System.out.println("Unity not found!");
 						break;
 					case 27:
 						System.out.println("\n--- CHECK SALARY OF EMPLOYEE ---\n");

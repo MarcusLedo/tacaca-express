@@ -1,22 +1,38 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Unity {
 	private Integer branch;
 	private String name;
-	private Integer companiesHouseId;
-	private Email email;
-	private PhoneNumber phone;
+	private String companiesHouseId;
+	private String email;
+	private String phone;
+	private UnityPremises premises;
 	private List<Employee> employees = new ArrayList<>(); 
 	private List<ExpenditureCharge> expenditure = new ArrayList<>();
 	private List<MonthlyUnityExpenditure> monthlyExpenditure = new ArrayList<>();
 	
 	
 
+	
+	
 
-	public Unity(Integer branch, String name, Integer companiesHouseId, Email email, PhoneNumber phone,
+	public Unity(Integer branch, String name, String companiesHouseId, String email, String phone,
+			UnityPremises premises) {
+		this.branch = branch;
+		this.name = name;
+		this.companiesHouseId = companiesHouseId;
+		this.email = email;
+		this.phone = phone;
+		this.premises = premises;
+	}
+
+
+
+	public Unity(Integer branch, String name, String companiesHouseId, String email, String phone,
 			List<Employee> employees, List<ExpenditureCharge> expenditure,
 			List<MonthlyUnityExpenditure> monthlyExpenditure) {
 		this.branch = branch;
@@ -31,7 +47,7 @@ public abstract class Unity {
 
 
 	
-	public Unity(Integer branch, String name, Integer companiesHouseId, Email email, PhoneNumber phone) {
+	public Unity(Integer branch, String name, String companiesHouseId, String email, String phone) {
 		this.branch = branch;
 		this.name = name;
 		this.companiesHouseId = companiesHouseId;
@@ -43,24 +59,36 @@ public abstract class Unity {
 
 
 
-	public Unity(Integer branch, String name, Integer taxPayerIdNumber, Email email) {
-		this.branch = branch;
-		this.name = name;
-		this.companiesHouseId = taxPayerIdNumber;
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
+
+
+	public UnityPremises getPremises() {
+		return premises;
+	}
+
 	
-	
-	public PhoneNumber getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(PhoneNumber phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
 
+
+	public void setPremises(UnityPremises premises) {
+		this.premises = premises;
+	}
 
 	public Integer getBranch() {
 		return branch;
@@ -78,23 +106,15 @@ public abstract class Unity {
 		this.name = name;
 	}
 
-	public Integer getCompaniesHouseId() {
+	public String getCompaniesHouseId() {
 		return companiesHouseId;
 	}
 
-	public void setCompaniesHouseId(Integer taxPayerIdNumber) {
+	public void setCompaniesHouseId(String taxPayerIdNumber) {
 		this.companiesHouseId = taxPayerIdNumber;
 	}
 	
 	
-	public Email getEmail() {
-		return email;
-	}
-
-	public void setEmail(Email email) {
-		this.email = email;
-	}
-
 	public List<Employee> getEmployees() {
 		return employees;
 	}
@@ -153,8 +173,9 @@ public abstract class Unity {
 	
 	@Override
 	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		return "Branch: " + branch + "\n"
-				+ "Name: " + name + "\n"
+				+ "Name: " + name + "\n" + "Opening date: " + sdf.format(this.premises.getOpeningDate()) + "\n"
 				+ "Employee amount: " + this.employeeAmount();
 	}
 }
