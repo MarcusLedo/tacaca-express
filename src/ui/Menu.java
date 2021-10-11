@@ -47,7 +47,7 @@ public class Menu {
 		System.out.println("24) UPDATE EMPLOYEE");
 		System.out.println("25) CHANGE POSITION");
 		System.out.println("26) LIST EMPLOYEES");
-		System.out.println("27) CHECK SALARY OF EMPLOYEE");
+		System.out.println("27) CHECK EMPLOYEE HISTORY");
 		System.out.println("28) CHECK SALARY COST OF AN UNITY");
 		System.out.println("");
 		System.out.println("9) BACK TO THE PREVIOUS MENU");

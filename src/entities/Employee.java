@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Employee {
-	private Integer idEmployee;
+	private Integer employeeId;
 	private Integer branchId; 
 	private String name;
 	private String gender;
@@ -36,7 +36,7 @@ public class Employee {
 			String motherName, Date hiringDate, Date dismissalDate, Date birthDate, String maritalStatus,
 			Integer children, boolean disabledPerson, boolean healthPlan, String typeDriverLicense,
 			List<Career> career) {
-		this.idEmployee = idEmployee;
+		this.employeeId = idEmployee;
 		this.name = name;
 		this.gender = gender;
 		this.address = address;
@@ -68,7 +68,7 @@ public class Employee {
 			String maritalStatus, Integer children, boolean disabledPerson, boolean healthPlan,
 			String typeDriverLicense) {
 		super();
-		this.idEmployee = idEmployee;
+		this.employeeId = idEmployee;
 		this.name = name;
 		this.gender = gender;
 		this.address = address;
@@ -94,14 +94,14 @@ public class Employee {
 
 
 	public Employee(Integer idEmployee, String name, String gender, Address address) {
-		this.idEmployee = idEmployee;
+		this.employeeId = idEmployee;
 		this.name = name;
 		this.gender = gender;
 		this.address = address;
 	}
 
 	public Employee(Integer idEmployee, String name, String gender) {
-		this.idEmployee = idEmployee;
+		this.employeeId = idEmployee;
 		this.name = name;
 		this.gender = gender;
 	}
@@ -111,7 +111,7 @@ public class Employee {
 			String areaCode, String mobile, String insuranceNumber, String birthPlace, String fatherName,
 			String motherName, Date hiringDate, Date dismissalDate, Date birthDate, String maritalStatus,
 			Integer children, boolean disabledPerson, boolean healthPlan, String typeDriverLicense, Integer branchId) {
-		this.idEmployee = idEmployee;
+		this.employeeId = idEmployee;
 		this.branchId = branchId;
 		this.name = name;
 		this.gender = gender;
@@ -281,12 +281,12 @@ public class Employee {
 		this.typeDriverLicense = typeDriverLicense;
 	}
 
-	public Integer getIdEmployee() {
-		return idEmployee;
+	public Integer getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setIdEmployee(Integer idEmployee) {
-		this.idEmployee = idEmployee;
+	public void setEmployeeId(Integer idEmployee) {
+		this.employeeId = idEmployee;
 	}
 
 	public String getName() {
@@ -320,7 +320,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return "Id: " + idEmployee + "\n"
+		return "Id: " + employeeId + "\n"
 				+ "Name: " + name + "\n"
 				+ "Health Plan: " + healthPlan + "\n"
 				+ "Birth date: " + sdf.format(this.getBirthDate());

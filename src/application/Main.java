@@ -9,6 +9,7 @@ import java.util.Scanner;
 import entities.Address;
 import entities.BackOffice;
 import entities.BusinessUnity;
+import entities.Career;
 import entities.Employee;
 import entities.Unity;
 import ui.Menu;
@@ -20,6 +21,7 @@ public class Main {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		AutoInput.loadUnityInput();
 		AutoInput.loadEmployeeInput();
+		AutoInput.loadCareerInput();
 		List<Unity> unity = AutoInput.getUnity();
 
 		do {
@@ -198,10 +200,10 @@ public class Main {
 						flag = 0;
 						System.out.print("\n-> Enter the unity branch that you desire to check: ");
 						branch = sc.nextInt();
-						for(Unity x : unity) {
+						for (Unity x : unity) {
 							if (x.getBranch() == branch) {
 								flag = 1;
-								for(Employee y : x.getEmployees())
+								for (Employee y : x.getEmployees())
 									System.out.println(y + "\n\n");
 							}
 						}
@@ -209,7 +211,26 @@ public class Main {
 							System.out.println("Unity not found!");
 						break;
 					case 27:
-						System.out.println("\n--- CHECK SALARY OF EMPLOYEE ---\n");
+						System.out.println("\n--- CHECK EMPLOYEE HISTORY ---\n");
+						flag = 0;
+						System.out.print("\n-> Enter the employee branch: ");
+						branch = sc.nextInt();
+						for (Unity x : unity) {
+							if (x.getBranch() == branch) {
+								System.out.print("\n-> Enter the employee ID: ");
+								int id = sc.nextInt();
+								for (Employee y : x.getEmployees()) {
+									if (y.getEmployeeId() == id) {
+										flag = 1;
+										System.out.println("FOUND IT");
+										for (Career c : y.getCareer())
+											System.out.println(c + "\n\n");
+									}
+								}
+							}
+						}
+						if (flag == 0)
+							System.out.println("\nUnity or employee not found\n");
 						break;
 					case 28:
 						System.out.println("\n--- CHECK SALARY COST OF AN UNITY ---\n");
