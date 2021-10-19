@@ -8,9 +8,6 @@ CREATE TABLE IF NOT EXISTS Unidade (
 	instalacao INT,
     
 	FOREIGN KEY (tipo) REFERENCES UnidadeTipo(id),
-	FOREIGN KEY (telefone) REFERENCES Telefone(id),
-	FOREIGN KEY (email) REFERENCES Email(id),
-    FOREIGN KEY (instalacao) REFERENCES UnidadeInstalcao(id),
 
 	PRIMARY KEY (filial)
 );
@@ -23,16 +20,23 @@ CREATE TABLE IF NOT EXISTS UnidadeTipo (
 
 CREATE TABLE IF NOT EXISTS Telefone (
 	id INT AUTO_INCREMENT NOT NULL,
-	filial INT,
+	filial INT NOT NULL,
 	ddd CHAR(2) NOT NULL,
 	telefone CHAR(9) NOT NULL,
+    
+    FOREIGN KEY (filial) REFERENCES Unidade(filial),
+    
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS Email (
 	id INT AUTO_INCREMENT NOT NULL,
+	filial INT,
 	email VARCHAR(100) NOT NULL,
 	rotuloEmail VARCHAR(80) NOT NULL,
+    
+	FOREIGN KEY (filial) REFERENCES Unidade(filial),
+    
 	PRIMARY KEY (id)
 );
 
@@ -68,6 +72,7 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 
 CREATE TABLE IF NOT EXISTS UnidadeInstalacao (
 	id INT AUTO_INCREMENT NOT NULL,
+    filial INT NOT NULL,
 	dataInicio DATE NOT NULL,
 	dataFim DATE NOT NULL,
 	logradouro VARCHAR(80) NOT NULL,
@@ -77,6 +82,8 @@ CREATE TABLE IF NOT EXISTS UnidadeInstalacao (
 	uf CHAR(2) NOT NULL,
 	cep CHAR(8) NOT NULL,
 	ocupacao INT(4) NOT NULL,
+    
+	FOREIGN KEY (filial) REFERENCES Unidade(filial)
     
 	PRIMARY KEY (id)
 );
@@ -136,6 +143,7 @@ CREATE TABLE IF NOT EXISTS EstadoCivil (
 	id INT AUTO_INCREMENT NOT NULL,
 	sigla CHAR(1) UNIQUE,
 	definicao VARCHAR(20) NOT NULL,
+    
 	PRIMARY KEY (id)
 );
 
