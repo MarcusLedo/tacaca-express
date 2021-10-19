@@ -52,13 +52,7 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 	cpf CHAR(11) NOT NULL,
 	filiacaoPai VARCHAR(80) ,
 	filiacaoMae VARCHAR(80) ,
-	logradouro VARCHAR(80) NOT NULL,
-	numero VARCHAR(5) NOT NULL,
-	complemento VARCHAR(25) NOT NULL,
-	bairro VARCHAR(25) NOT NULL,
-	municipio VARCHAR(50) NOT NULL,
-	uf CHAR(2) NOT NULL,
-	cep CHAR(8) NOT NULL,
+    endereco INT NOT NULL,
 	admissao DATE NOT NULL,
 	nascimento DATE NOT NULL,
 	estadoCivil INT,
@@ -68,6 +62,8 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 	categoriaHabilitacao CHAR(2),
     
 	FOREIGN KEY (estadoCivil) REFERENCES EstadoCivil(id),
+	FOREIGN KEY (endereco) REFERENCES Endereco(id),
+
     
 	PRIMARY KEY (matricula)
 );
@@ -75,17 +71,13 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 CREATE TABLE IF NOT EXISTS UnidadeInstalacao (
 	id INT AUTO_INCREMENT NOT NULL,
     filial INT NOT NULL,
+    endereco INT NOT NULL,
 	dataInicio DATE NOT NULL,
 	dataFim DATE NOT NULL,
-	logradouro VARCHAR(80) NOT NULL,
-	numero VARCHAR(5) NOT NULL,
-	bairro VARCHAR(25) NOT NULL,
-	municipio VARCHAR(50) NOT NULL,
-	uf CHAR(2) NOT NULL,
-	cep CHAR(8) NOT NULL,
-	ocupacao INT(4) NOT NULL,
+	ocupacao INT NOT NULL,
     
 	FOREIGN KEY (filial) REFERENCES Unidade(filial),
+    FOREIGN KEY (endereco) REFERENCES Endereco(id),
     
 	PRIMARY KEY (id)
 );
@@ -158,4 +150,26 @@ CREATE TABLE IF NOT EXISTS NaturezaInformacao (
 	tipo CHAR(1) UNIQUE,
 	denominacao VARCHAR(20) NOT NULL,
 	PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS Endereco(
+	id INT AUTO_INCREMENT NOT NULL,
+	logradouro VARCHAR(50) NOT NULL,
+    bairro VARCHAR(50) NOT NULL,
+    municipio VARCHAR(50) NOT NULL,
+    uf CHAR(2) NOT NULL,
+    cep CHAR(8) NOT NULL,
+    
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS UnidadeDespesa(
+	id INT AUTO_INCREMENT NOT NULL,
+    competencia DATE NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    tipo INT NOT NULL,
+    
+    FOREIGN KEY (tipo) REFERENCES DespesaTipo(id),
+
+	PRIMARY KEY(id)
 );
