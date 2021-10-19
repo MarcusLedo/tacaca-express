@@ -4,10 +4,12 @@ CREATE TABLE IF NOT EXISTS Unidade (
 	filial INT AUTO_INCREMENT NOT NULL, /*não precisa ser declarado no insert (autoIncrement)*/
 	nome VARCHAR(80) NOT NULL,
 	tipo INT NOT NULL,
+    ocupacaoTipo INT NOT NULL,
 	cnpj CHAR(14) NOT NULL,
 	instalacao INT,
     
 	FOREIGN KEY (tipo) REFERENCES UnidadeTipo(id),
+	FOREIGN KEY (ocupacaoTipo) REFERENCES UnidadeOcupacaoTipo(id),
 
 	PRIMARY KEY (filial)
 );
@@ -83,7 +85,7 @@ CREATE TABLE IF NOT EXISTS UnidadeInstalacao (
 	cep CHAR(8) NOT NULL,
 	ocupacao INT(4) NOT NULL,
     
-	FOREIGN KEY (filial) REFERENCES Unidade(filial)
+	FOREIGN KEY (filial) REFERENCES Unidade(filial),
     
 	PRIMARY KEY (id)
 );
@@ -119,18 +121,22 @@ CREATE TABLE IF NOT EXISTS DespesaTipo (
 );
 
 CREATE TABLE IF NOT EXISTS ContratoServico (
-	id INT(5) 	PRIMARY KEY,
-	natureza INT(5) FOREIGN KEY,
-	fornecedor INT(5) FOREIGN KEY,
-	unidade INT(5) FOREIGN KEY,
-	dataInicio DATE() NOT NULL,
-	dataFim DATE() ,
+	id INT AUTO_INCREMENT NOT NULL,
+	natureza VARCHAR(100),
+	fornecedor INT NOT NULL,
+	filial INT NOT NULL,
+	dataInicio DATE NOT NULL,
+	dataFim DATE,
 	pagamentoMensal DECIMAL(10,2) NOT NULL,
+    
+    FOREIGN KEY (fornecedor) REFERENCES Fornecedor(id),
+    FOREIGN KEY (filial) REFERENCES Unidade(filial),
+    
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS Fornecedor (
-	id INT(5) 	PRIMARY KEY,
+	id INT AUTO_INCREMENT NOT NULL,
 	cnpj CHAR(14) NOT NULL,
 	nome VARCHAR(80) NOT NULL,
 	ddd CHAR(2) ,
@@ -148,7 +154,7 @@ CREATE TABLE IF NOT EXISTS EstadoCivil (
 );
 
 CREATE TABLE IF NOT EXISTS NaturezaInformacao (
-	id INT(1) 	PRIMARY KEY,
+	id INT AUTO_INCREMENT NOT NULL,
 	tipo CHAR(1) UNIQUE,
 	denominacao VARCHAR(20) NOT NULL,
 	PRIMARY KEY (id)
