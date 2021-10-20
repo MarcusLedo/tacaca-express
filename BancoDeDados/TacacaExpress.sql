@@ -5,6 +5,8 @@ USE tacaca_express;
 CREATE TABLE IF NOT EXISTS Address (
 	id INT AUTO_INCREMENT NOT NULL,
 	address VARCHAR(50) NOT NULL,
+	number_address VARCHAR(5) NOT NULL,
+	address_line2 VARCHAR(25),
     borough VARCHAR(50) NOT NULL,
     city VARCHAR(50) NOT NULL,
     state CHAR(2) NOT NULL,
@@ -68,17 +70,6 @@ CREATE TABLE IF NOT EXISTS Position_Title (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS Career (
-	id INT AUTO_INCREMENT NOT NULL,
-	position_title INT NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE,
-    
-    FOREIGN KEY (position_title) REFERENCES Position_Title(id),
-    
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE IF NOT EXISTS Unity_Type (
 	id INT AUTO_INCREMENT NOT NULL,
 	type_unity VARCHAR(25) NOT NULL,
@@ -87,14 +78,12 @@ CREATE TABLE IF NOT EXISTS Unity_Type (
 
 CREATE TABLE IF NOT EXISTS Unity (
 	id INT AUTO_INCREMENT NOT NULL, /*não precisa ser declarado no insert (autoIncrement)*/
-	name_branch VARCHAR(80) NOT NULL,
+	name_unity VARCHAR(80) NOT NULL,
 	type_unity INT NOT NULL,
-    premise_type INT NOT NULL,
 	companies_house_id  CHAR(14) NOT NULL,
-	active_unity TINYINT,
+	active_unity BOOL,
     
 	FOREIGN KEY (type_unity) REFERENCES Unity_Type(id),
-	FOREIGN KEY (premise_type) REFERENCES Premise_Type(id),
 
 	PRIMARY KEY (id)
 );
@@ -148,11 +137,26 @@ CREATE TABLE IF NOT EXISTS Employee (
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS Career (
+	id INT AUTO_INCREMENT NOT NULL,
+    employee_id INT NOT NULL,
+	position_title INT NOT NULL,
+    unity INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE,
+
+	FOREIGN KEY (employee_id) REFERENCES Employee(id),
+    FOREIGN KEY (position_title) REFERENCES Position_Title(id),
+	FOREIGN KEY (unity) REFERENCES Unity(id),
+    
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS Unity_Premise (
 	id INT AUTO_INCREMENT NOT NULL,
     unity INT NOT NULL,
     start_date DATE NOT NULL,
-	end_date DATE NOT NULL,
+	end_date DATE,
 	premise_type INT NOT NULL,
     address INT NOT NULL,
     
