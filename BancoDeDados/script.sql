@@ -1,5 +1,90 @@
 CREATE DATABASE IF NOT EXISTS tacaca_express;
 
+USE tacaca_express;
+
+CREATE TABLE IF NOT EXISTS Endereco(
+	id INT AUTO_INCREMENT NOT NULL,
+	logradouro VARCHAR(50) NOT NULL,
+    bairro VARCHAR(50) NOT NULL,
+    municipio VARCHAR(50) NOT NULL,
+    uf CHAR(2) NOT NULL,
+    cep CHAR(8) NOT NULL,
+    
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS NaturezaInformacao (
+	id INT AUTO_INCREMENT NOT NULL,
+	tipo CHAR(1) UNIQUE,
+	denominacao VARCHAR(20) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS EstadoCivil (
+	id INT AUTO_INCREMENT NOT NULL,
+	sigla CHAR(1) UNIQUE,
+	definicao VARCHAR(20) NOT NULL,
+    
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS Fornecedor (
+	id INT AUTO_INCREMENT NOT NULL,
+	cnpj CHAR(14) NOT NULL,
+	nome VARCHAR(80) NOT NULL,
+	ddd CHAR(2) ,
+	telefone CHAR(9) ,
+	email VARCHAR(80) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS DespesaTipo (
+	id INT AUTO_INCREMENT NOT NULL,
+	tipo VARCHAR(80) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS UnidadeDespesa(
+	id INT AUTO_INCREMENT NOT NULL,
+    competencia DATE NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    tipo INT NOT NULL,
+    
+    FOREIGN KEY (tipo) REFERENCES DespesaTipo(id),
+
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS UnidadeOcupacaoTipo (
+	id INT AUTO_INCREMENT NOT NULL,
+	tipo VARCHAR(25) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS Cargo (
+	id INT AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(25) NOT NULL,
+	salario DECIMAL(10,2) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS Carreira(
+	id INT AUTO_INCREMENT NOT NULL,
+	cargo INT NOT NULL,
+    dataInicio DATE NOT NULL,
+    dataFim DATE,
+    
+    FOREIGN KEY (cargo) REFERENCES Cargo(id),
+    
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS UnidadeTipo (
+	id INT AUTO_INCREMENT NOT NULL,
+	tipo VARCHAR(25) NOT NULL,
+	PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS Unidade (
 	filial INT AUTO_INCREMENT NOT NULL, /*não precisa ser declarado no insert (autoIncrement)*/
 	nome VARCHAR(80) NOT NULL,
@@ -12,12 +97,6 @@ CREATE TABLE IF NOT EXISTS Unidade (
 	FOREIGN KEY (ocupacaoTipo) REFERENCES UnidadeOcupacaoTipo(id),
 
 	PRIMARY KEY (filial)
-);
-
-CREATE TABLE IF NOT EXISTS UnidadeTipo (
-	id INT AUTO_INCREMENT NOT NULL,
-	tipo VARCHAR(25) NOT NULL,
-	PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS Telefone (
@@ -82,36 +161,6 @@ CREATE TABLE IF NOT EXISTS UnidadeInstalacao (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS Cargo (
-	id INT AUTO_INCREMENT NOT NULL,
-	nome VARCHAR(25) NOT NULL,
-	salario DECIMAL(10,2) NOT NULL,
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS Carreira(
-	id INT AUTO_INCREMENT NOT NULL,
-	cargo INT NOT NULL,
-    dataInicio DATE NOT NULL,
-    dataFim DATE,
-    
-    FOREIGN KEY (cargo) REFERENCES Cargo(id),
-    
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS UnidadeOcupacaoTipo (
-	id INT AUTO_INCREMENT NOT NULL,
-	tipo VARCHAR(25) NOT NULL,
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS DespesaTipo (
-	id INT AUTO_INCREMENT NOT NULL,
-	tipo VARCHAR(80) NOT NULL,
-	PRIMARY KEY (id)
-);
-
 CREATE TABLE IF NOT EXISTS ContratoServico (
 	id INT AUTO_INCREMENT NOT NULL,
 	natureza VARCHAR(100),
@@ -125,51 +174,4 @@ CREATE TABLE IF NOT EXISTS ContratoServico (
     FOREIGN KEY (filial) REFERENCES Unidade(filial),
     
 	PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS Fornecedor (
-	id INT AUTO_INCREMENT NOT NULL,
-	cnpj CHAR(14) NOT NULL,
-	nome VARCHAR(80) NOT NULL,
-	ddd CHAR(2) ,
-	telefone CHAR(9) ,
-	email VARCHAR(80) NOT NULL,
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS EstadoCivil (
-	id INT AUTO_INCREMENT NOT NULL,
-	sigla CHAR(1) UNIQUE,
-	definicao VARCHAR(20) NOT NULL,
-    
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS NaturezaInformacao (
-	id INT AUTO_INCREMENT NOT NULL,
-	tipo CHAR(1) UNIQUE,
-	denominacao VARCHAR(20) NOT NULL,
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS Endereco(
-	id INT AUTO_INCREMENT NOT NULL,
-	logradouro VARCHAR(50) NOT NULL,
-    bairro VARCHAR(50) NOT NULL,
-    municipio VARCHAR(50) NOT NULL,
-    uf CHAR(2) NOT NULL,
-    cep CHAR(8) NOT NULL,
-    
-    PRIMARY KEY(id)
-);
-
-CREATE TABLE IF NOT EXISTS UnidadeDespesa(
-	id INT AUTO_INCREMENT NOT NULL,
-    competencia DATE NOT NULL,
-    valor DECIMAL(10,2) NOT NULL,
-    tipo INT NOT NULL,
-    
-    FOREIGN KEY (tipo) REFERENCES DespesaTipo(id),
-
-	PRIMARY KEY(id)
 );
