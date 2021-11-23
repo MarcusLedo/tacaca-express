@@ -718,7 +718,7 @@ WHERE unity.id = 6
 OR unity.id = 7;
 COMMIT; /* Confirmar Transação */
 
-/* Desativar as Unidades de Moju e Santanda do Araguaia */
+/* Desativar as Unidades de Moju e Santana do Araguaia */
 BEGIN TRANSACTION
 UPDATE Unity
 SET active_unity = 0
@@ -731,7 +731,7 @@ USE tacaca_express
 CREATE LOGIN Fulano WITH PASSWORD = 'xyz'
 CREATE USER DeTal FROM LOGIN Fulano;
 GRANT CONTROL ON Address_Catalog TO DeTal; /* Conceder Acesso */
-REVOKE CONTROL ON Address_Catalog TO DeTal2; /* Revogar Acesso */
+REVOKE CONTROL ON Address_Catalog TO DeTal; /* Revogar Acesso */
 
 /* Gatilho de Listagem das Unidades */
 CREATE TRIGGER list_unity
@@ -746,10 +746,10 @@ END
 
 INSERT INTO Unity (name_unity, type_unity, companies_house_id, active_unity)
 VALUES
-('Crepori', 1, '01492745000127', 1);
+('Crepori-Açu', 1, '01492745000127', 1);
 
-/* Procedimento Reutilizável */
-USE tacaca_express
+/* Procedimento Reutilizável - Exibir Unidades Inativas */
+
 CREATE PROCEDURE inactive_unity
 AS
 BEGIN
